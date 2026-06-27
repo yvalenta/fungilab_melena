@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Melena de León — Calma para tu Mente Agitada · Apoyo Natural para Ansiedad</title>
+
+  <!-- Fonts: Fraunces (display, serif elegante) + DM Sans (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=DM+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Alpine.js -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Fraunces', 'serif'],
+            body: ['DM Sans', 'sans-serif'],
+          },
+          colors: {
+            ink: { DEFAULT: '#170B2E', 800: '#241140', 600: '#3B1D63' },
+            violet: { DEFAULT: '#8B5CF6', light: '#A78BFA', dark: '#6D28D9', faint: '#F1ECFF' },
+            lilac: { DEFAULT: '#DDD6FE', dark: '#C4B5FD' },
+            mist: '#F5F2FF',
+          },
+          boxShadow: {
+            card: '0 4px 24px 0 rgba(23,11,46,0.10)',
+            glow: '0 0 48px 12px rgba(139,92,246,0.22)',
+            ring: '0 0 0 3px rgba(139,92,246,0.35)',
+          },
+        },
+      },
+    }
+  </script>
+
+  <style>
+    /* ══ DESIGN TOKENS — Melena de León ══ */
+    :root {
+      --ink: #170B2E;
+      --violet: #8B5CF6;
+      --violet-l: #A78BFA;
+      --lilac: #DDD6FE;
+      --lilac-d: #C4B5FD;
+      --mist: #F5F2FF;
+      --white: #FFFFFF;
+    }
+
+    /* ══ GLOBAL ══ */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: #fff;
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ══ TYPOGRAPHY UTILITIES ══ */
+    .font-display {
+      font-family: 'Fraunces', serif;
+    }
+
+    /* ══ COLOR UTILITIES ══ */
+    .text-violet {
+      color: var(--violet);
+    }
+
+    .text-lilac {
+      color: var(--lilac);
+    }
+
+    .bg-ink {
+      background-color: var(--ink);
+    }
+
+    .bg-mist {
+      background-color: var(--mist);
+    }
+
+    .border-violet {
+      border-color: var(--violet);
+    }
+
+    /* ══ GRADIENTS ══ */
+    .gradient-violet {
+      background: linear-gradient(135deg, #8B5CF6 0%, #A78BFA 50%, #8B5CF6 100%);
+    }
+
+    .gradient-hero {
+      background: linear-gradient(160deg, #170B2E 0%, #241140 55%, #3B1D63 100%);
+    }
+
+    .gradient-cta {
+      background: linear-gradient(135deg, #8B5CF6 0%, #6D28D9 100%);
+    }
+
+    .gradient-lilac {
+      background: linear-gradient(135deg, #DDD6FE 0%, #C4B5FD 100%);
+    }
+
+    /* ══ DIVIDER ══ */
+    .divider-violet {
+      width: 56px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--violet), var(--lilac-d));
+      border-radius: 999px;
+      margin: 0 auto 1.5rem;
+    }
+
+    /* ══ TABS ══ */
+    [x-cloak] {
+      display: none !important;
+    }
+
+    /* ══ STICKY CTA ══ */
+    #sticky-cta {
+      transform: translateY(100%);
+      transition: transform .35s cubic-bezier(.4, 0, .2, 1);
+    }
+
+    #sticky-cta.visible {
+      transform: translateY(0);
+    }
+
+    /* ══ REVIEW CARD ══ */
+    .review-card {
+      background: #fff;
+      border: 1px solid #ece5fb;
+      border-radius: 1rem;
+      padding: 1.5rem;
+      box-shadow: 0 2px 12px rgba(23, 11, 46, 0.06);
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+
+    .review-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 28px rgba(139, 92, 246, .14);
+    }
+
+    /* ══ INGREDIENT CARD ══ */
+    .ingredient-card {
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+
+    .ingredient-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 32px rgba(139, 92, 246, .18);
+    }
+
+    /* ══ THUMBNAIL ══ */
+    .thumb-btn.active {
+      border-color: var(--violet) !important;
+      opacity: 1 !important;
+    }
+
+    /* ══ SCROLLBAR HIDE ══ */
+    .no-scroll::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* ══ ANIMATIONS ══ */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-up {
+      animation: fadeUp .55s ease both;
+    }
+
+    .delay-1 {
+      animation-delay: .1s;
+    }
+
+    .delay-2 {
+      animation-delay: .22s;
+    }
+
+    .delay-3 {
+      animation-delay: .34s;
+    }
+
+    .delay-4 {
+      animation-delay: .46s;
+    }
+
+    /* ══ PULSE BADGE ══ */
+    @keyframes pulse-violet {
+
+      0%,
+      100% {
+        box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.5);
+      }
+
+      50% {
+        box-shadow: 0 0 0 10px rgba(139, 92, 246, 0);
+      }
+    }
+
+    .pulse-violet {
+      animation: pulse-violet 2.2s ease infinite;
+    }
+
+    /* ══ STOCK BAR ══ */
+    .stock-bar {
+      background: linear-gradient(90deg, var(--violet) 0%, var(--lilac-d) 100%);
+      border-radius: 999px;
+      height: 8px;
+      width: 71%;
+      transition: width 1.2s ease;
+    }
+
+    /* ══ FIRMA VISUAL: CALM METER (barra de ruido mental) ══ */
+    /* El medidor de "ruido mental" es el elemento signature de esta landing.
+       Empieza alto (mente agitada) y BAJA al cargar — efecto inverso al de
+       una barra de energía, coherente con el concepto "Apaga el Ruido". */
+    .noise-track {
+      width: 100%;
+      height: 10px;
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .noise-fill {
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #8B5CF6 0%, #A78BFA 50%, #DDD6FE 100%);
+      width: 86%;
+      transition: width 1.6s cubic-bezier(.22, 1, .36, 1);
+    }
+
+    .noise-fill.calmed {
+      width: 14%;
+    }
+
+    /* Pill label de la barra */
+    .noise-label {
+      font-family: 'Fraunces', serif;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    /* ══ DIAGONAL CLIP — sección S5 ══ */
+    .clip-top {
+      clip-path: polygon(0 40px, 100% 0, 100% 100%, 0 100%);
+      margin-top: -40px;
+      padding-top: 80px;
+    }
+
+    .clip-bottom {
+      clip-path: polygon(0 0, 100% 0, 100% calc(100% - 40px), 0 100%);
+      padding-bottom: 80px;
+    }
+
+    /* ══ PRODUCT IMG ══ */
+    .product-img {
+      max-height: 520px;
+      object-fit: contain;
+      filter: drop-shadow(0 20px 56px rgba(139, 92, 246, .30));
+    }
+
+    /* ══ FAQ ══ */
+    details summary {
+      list-style: none;
+      cursor: pointer;
+    }
+
+    details summary::-webkit-details-marker {
+      display: none;
+    }
+
+    details[open] summary .icon-chevron {
+      transform: rotate(180deg);
+    }
+
+    .icon-chevron {
+      transition: transform .25s ease;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ══════════════════════════════════════════════
+     [S0] ANNOUNCEMENT BAR
+══════════════════════════════════════════════ -->
+  <div class="gradient-cta text-white text-xs sm:text-sm font-semibold text-center py-2.5 tracking-wide">
+    🇨🇴 Envío GRATIS a toda Colombia &nbsp;·&nbsp; 💵 Pago Contraentrega &nbsp;·&nbsp; 🌙 Calma para cada noche
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+     [S1] NAV STICKY
+══════════════════════════════════════════════ -->
+  <nav class="bg-ink border-b border-white/10 sticky top-0 z-40">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between h-14">
+      <span class="font-display text-white text-lg tracking-tight">Fungi<span class="text-violet">Lab</span></span>
+      <a href="#comprar"
+        class="gradient-violet text-white text-xs font-bold px-5 py-2 rounded-full shadow hover:opacity-90 transition-opacity">
+        Comprar Ahora
+      </a>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════════════════════
+     [S2] HERO — 2 COLUMNAS
+══════════════════════════════════════════════ -->
+  <section class="gradient-hero pb-14 pt-10 sm:pt-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+
+      <!-- Columna izquierda: Copy -->
+      <div class="order-2 lg:order-1">
+
+        <!-- Eyebrow -->
+        <div
+          class="inline-flex items-center gap-2 text-xs font-semibold tracking-widest uppercase text-lilac border border-lilac/40 rounded-full px-4 py-1.5 mb-5 fade-up">
+          <span class="w-2 h-2 rounded-full bg-violet pulse-violet inline-block"></span>
+          Hongo Nootrópico · Calma Neuroprotectora
+        </div>
+
+        <!-- H1 -->
+        <h1 class="font-display text-white text-4xl sm:text-5xl xl:text-6xl leading-[1.1] mb-5 fade-up delay-1">
+          Calma para tu <span class="text-violet">Mente Agitada</span>
+        </h1>
+
+        <!-- Subtítulo -->
+        <p class="text-white/70 text-base sm:text-lg leading-relaxed mb-5 max-w-lg fade-up delay-2">
+          Melena de León (Hericium erinaceus): el hongo que apoya tu sistema nervioso, calma la ansiedad leve y
+          despeja la neblina mental — sin sedarte, sin dependencia.
+        </p>
+
+        <!-- ══ FIRMA VISUAL: CALM METER ══ -->
+        <div class="fade-up delay-2 mb-7">
+          <div class="flex justify-between items-center mb-2">
+            <span class="noise-label text-white/50">Ruido mental</span>
+            <span class="noise-label text-violet" id="noise-pct">86%</span>
+          </div>
+          <div class="noise-track mb-1.5">
+            <div class="noise-fill" id="noise-fill"></div>
+          </div>
+          <div class="flex justify-between">
+            <span class="noise-label text-white/35">Sin suplemento</span>
+            <span class="noise-label text-lilac">Con Melena de León →</span>
+          </div>
+        </div>
+
+        <!-- USPs -->
+        <ul class="space-y-2.5 mb-8 fade-up delay-3">
+          <li class="flex items-center gap-3 text-white/85 text-sm">
+            <span class="w-5 h-5 rounded-full gradient-cta flex-shrink-0 flex items-center justify-center">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5">
+                <path d="M20 6L9 17l-5-5" />
+              </svg>
+            </span>
+            Apoyo natural para ansiedad y ánimo bajo leve
+          </li>
+          <li class="flex items-center gap-3 text-white/85 text-sm">
+            <span class="w-5 h-5 rounded-full gradient-cta flex-shrink-0 flex items-center justify-center">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5">
+                <path d="M20 6L9 17l-5-5" />
+              </svg>
+            </span>
+            Mejora memoria, concentración y claridad mental
+          </li>
+          <li class="flex items-center gap-3 text-white/85 text-sm">
+            <span class="w-5 h-5 rounded-full gradient-cta flex-shrink-0 flex items-center justify-center">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5">
+                <path d="M20 6L9 17l-5-5" />
+              </svg>
+            </span>
+            Favorece la salud digestiva — tu segundo cerebro
+          </li>
+          <li class="flex items-center gap-3 text-white/85 text-sm">
+            <span class="w-5 h-5 rounded-full gradient-cta flex-shrink-0 flex items-center justify-center">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5">
+                <path d="M20 6L9 17l-5-5" />
+              </svg>
+            </span>
+            Adaptógeno: calma el sistema nervioso sin sedar
+          </li>
+        </ul>
+
+        <!-- Stars -->
+        <div class="flex items-center gap-2 mb-7 fade-up delay-3">
+          <div class="flex text-lilac text-xl">★★★★★</div>
+          <span class="text-white/55 text-sm"><strong class="text-white">4,9/5</strong> · 3.214 mentes más
+            tranquilas</span>
+        </div>
+
+        <!-- Caja de compra -->
+        <div id="comprar" class="bg-white/6 border border-white/12 rounded-2xl p-5 fade-up delay-4">
+
+          <!-- Precio -->
+          <div class="flex items-end gap-3 mb-1">
+            <span class="font-display text-4xl text-white font-bold">$45.000</span>
+            <span class="text-white/45 text-sm line-through mb-1">$65.000</span>
+            <span class="text-xs font-bold text-violet bg-violet/20 px-2.5 py-1 rounded-full mb-1">31% OFF</span>
+          </div>
+          <p class="text-white/45 text-xs mb-4">COP · Frasco 60 cápsulas · 30 días de calma</p>
+
+          <!-- Código descuento -->
+          <div class="flex items-center gap-3 bg-lilac/10 border border-lilac/30 rounded-xl px-4 py-2.5 mb-4">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--lilac)" stroke-width="2">
+              <path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z" />
+              <line x1="7" y1="7" x2="7.01" y2="7" />
+            </svg>
+            <span class="font-display text-lilac text-sm font-bold tracking-widest">MENTEZEN</span>
+            <span class="text-white/45 text-xs ml-auto">15% descuento adicional</span>
+          </div>
+
+          <!-- CTA WhatsApp -->
+          <a href="https://wa.me/573000000000?text=Hola,%20quiero%20pedir%20Melena%20de%20Le%C3%B3n%20con%20c%C3%B3digo%20MENTEZEN"
+            target="_blank"
+            class="block w-full gradient-cta text-white font-bold text-base py-4 rounded-xl text-center shadow-lg hover:opacity-92 transition-opacity mb-3">
+            🌙 PEDIR POR WHATSAPP — Envío Gratis
+          </a>
+          <p class="text-center text-white/38 text-xs">
+            🚚 Medellín en 24h · Resto Colombia 2–4 días · Sin costos ocultos
+          </p>
+        </div>
+
+        <!-- Stock bar -->
+        <div class="mt-4 fade-up delay-4">
+          <div class="flex justify-between text-xs text-white/55 mb-1.5">
+            <span>🔥 Stock disponible hoy</span>
+            <span class="font-semibold text-violet">71% vendido</span>
+          </div>
+          <div class="w-full bg-white/10 rounded-full h-2">
+            <div class="stock-bar"></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Columna derecha: Galería -->
+      <div class="order-1 lg:order-2 flex flex-col items-center gap-4">
+        <div class="relative w-full flex justify-center">
+          <img id="hero-img" src="img/hero-bottle-purpura.jpg" alt="Melena de León — Calma natural en cápsulas"
+            class="product-img w-full max-w-sm lg:max-w-md rounded-2xl" />
+          <!-- Badge precio -->
+          <div
+            class="absolute top-4 right-4 w-22 h-22 gradient-violet rounded-full flex flex-col items-center justify-center shadow-glow p-4">
+            <span class="font-display text-white text-xs font-bold leading-tight text-center">PRECIO<br>$45.000</span>
+          </div>
+        </div>
+
+        <!-- Miniaturas -->
+        <div class="flex gap-3 justify-center">
+          <button onclick="setImg(0,this)"
+            class="thumb-btn active w-16 h-16 rounded-xl border-2 border-violet bg-ink overflow-hidden">
+            <img src="img/hero-bottle-purpura.jpg" class="w-full h-full object-cover" alt="Frasco completo" />
+          </button>
+          <button onclick="setImg(1,this)"
+            class="thumb-btn w-16 h-16 rounded-xl border-2 border-white/20 bg-ink overflow-hidden opacity-60 hover:opacity-100 hover:border-violet/60 transition-all">
+            <img src="img/detalle-etiqueta.jpg" class="w-full h-full object-cover" alt="Detalle del hongo" />
+          </button>
+          <button onclick="setImg(2,this)"
+            class="thumb-btn w-16 h-16 rounded-xl border-2 border-white/20 bg-ink overflow-hidden opacity-60 hover:opacity-100 hover:border-violet/60 transition-all">
+            <img src="img/detalle-capsulas.jpg" class="w-full h-full object-cover" alt="Detalle de cápsulas" />
+          </button>
+          <button onclick="setImg(3,this)"
+            class="thumb-btn w-16 h-16 rounded-xl border-2 border-white/20 bg-ink overflow-hidden opacity-60 hover:opacity-100 hover:border-violet/60 transition-all">
+            <img src="img/frasco-completo-crema.jpg" class="w-full h-full object-cover" alt="Frasco vista alterna" />
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+     [S3] TRUST STRIP
+══════════════════════════════════════════════ -->
+  <section class="bg-mist py-5 border-y border-violet-100">
+    <div class="max-w-5xl mx-auto px-4 flex flex-wrap justify-center gap-6 sm:gap-10 text-sm font-semibold text-ink/65">
+      <div class="flex items-center gap-2">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--violet)" stroke-width="2">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+        </svg>
+        Calidad garantizada
+      </div>
+      <div class="flex items-center gap-2">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--violet)" stroke-width="2">
+          <rect x="1" y="3" width="15" height="13" />
+          <polygon points="16 8 20 8 23 11 23 16 16 16 16 8" />
+          <circle cx="5.5" cy="18.5" r="2.5" />
+          <circle cx="18.5" cy="18.5" r="2.5" />
+        </svg>
+        Envío gratis
+      </div>
+      <div class="flex items-center gap-2">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--violet)" stroke-width="2">
+          <line x1="12" y1="1" x2="12" y2="23" />
+          <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" />
+        </svg>
+        Pago contra entrega
+      </div>
+      <div class="flex items-center gap-2">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--violet)" stroke-width="2">
+          <circle cx="12" cy="12" r="10" />
+          <polyline points="12 6 12 12 16 14" />
+        </svg>
+        Entrega 2–4 días
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+     [S4] PROBLEM / SOLUTION
+══════════════════════════════════════════════ -->
+  <section class="py-16 sm:py-20 bg-white">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-12">
+        <div class="divider-violet"></div>
+        <h2 class="font-display text-3xl sm:text-4xl text-ink mb-4">¿Tu mente nunca se apaga, ni cuando el día
+          termina?</h2>
+        <p class="text-ink/55 max-w-xl mx-auto text-base leading-relaxed">
+          Llegas a casa agotado, pero la cabeza sigue corriendo. La neblina mental no te deja pensar con claridad,
+          y dormir bien se volvió un lujo.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-6">
+        <!-- Pain card -->
+        <div class="rounded-2xl bg-zinc-50 border border-zinc-100 p-6 sm:p-8">
+          <div class="w-10 h-10 rounded-xl bg-zinc-100 flex items-center justify-center mb-4">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2">
+              <circle cx="12" cy="12" r="10" />
+              <line x1="12" y1="8" x2="12" y2="12" />
+              <line x1="12" y1="16" x2="12.01" y2="16" />
+            </svg>
+          </div>
+          <h3 class="font-display text-xl text-zinc-700 mb-3">El ciclo de la mente sobre-estimulada</h3>
+          <ul class="space-y-2.5 text-sm text-zinc-500">
+            <li class="flex gap-2"><span class="text-zinc-300 mt-0.5">✕</span> Mil pestañas mentales abiertas,
+              ninguna se cierra</li>
+            <li class="flex gap-2"><span class="text-zinc-300 mt-0.5">✕</span> Neblina mental (brain fog) que no te
+              deja concentrar</li>
+            <li class="flex gap-2"><span class="text-zinc-300 mt-0.5">✕</span> Ansiedad leve que aparece sin razón
+              aparente</li>
+            <li class="flex gap-2"><span class="text-zinc-300 mt-0.5">✕</span> Sueño liviano que no termina de
+              descansar</li>
+            <li class="flex gap-2"><span class="text-zinc-300 mt-0.5">✕</span> Digestión alterada por el estrés
+              acumulado</li>
+          </ul>
+        </div>
+
+        <!-- Solution card -->
+        <div class="rounded-2xl bg-violet/5 border border-violet/20 p-6 sm:p-8">
+          <div class="w-10 h-10 rounded-xl bg-violet/12 flex items-center justify-center mb-4">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--violet)" stroke-width="2">
+              <path
+                d="M12 3a6 6 0 000 18 9 9 0 009-9c0-.46-.04-.92-.1-1.36a5.5 5.5 0 01-7.54-7.54A8.94 8.94 0 0012 3z" />
+            </svg>
+          </div>
+          <h3 class="font-display text-xl text-violet mb-3">Con Melena de León</h3>
+          <ul class="space-y-2.5 text-sm text-ink/70">
+            <li class="flex gap-2"><span class="text-violet mt-0.5">✓</span> Calma que llega gradual, sin sedarte ni
+              atontarte</li>
+            <li class="flex gap-2"><span class="text-violet mt-0.5">✓</span> Claridad mental que corta la neblina
+              del día</li>
+            <li class="flex gap-2"><span class="text-violet mt-0.5">✓</span> Sistema nervioso regulado, no
+              anestesiado</li>
+            <li class="flex gap-2"><span class="text-violet mt-0.5">✓</span> Sueño más profundo y reparador</li>
+            <li class="flex gap-2"><span class="text-violet mt-0.5">✓</span> Eje intestino-cerebro fortalecido,
+              mejor digestión</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- VS bridge -->
+      <div class="mt-6 gradient-cta rounded-xl p-5 text-center">
+        <p class="text-white font-semibold text-sm">
+          🌙 La diferencia: un calmante apaga tu sistema nervioso. La Melena de León lo regula. Uno te desconecta de
+          ti. El otro te reconecta contigo.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+     [S5] INGREDIENT — DETALLE MELENA DE LEÓN
+══════════════════════════════════════════════ -->
+  <section class="py-16 sm:py-20 clip-top clip-bottom bg-ink">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-12">
+        <div class="divider-violet"></div>
+        <h2 class="font-display text-3xl sm:text-4xl text-white mb-4">El <span class="text-violet">Hongo</span> que
+          Regenera tu Mente</h2>
+        <p class="text-white/50 max-w-lg mx-auto">Hericium erinaceus: usado en la medicina tradicional asiática por
+          siglos, hoy estudiado por su capacidad única de estimular la regeneración neuronal.</p>
+      </div>
+
+      <div class="grid sm:grid-cols-3 gap-5 mb-8">
+        <!-- Mecanismo 1 -->
+        <div class="ingredient-card bg-white/6 border border-white/10 rounded-2xl p-6">
+          <div class="text-3xl mb-4">🧠</div>
+          <h4 class="font-display text-white font-bold mb-2">Factor de Crecimiento Nervioso</h4>
+          <p class="text-white/55 text-sm leading-relaxed">Estimula la síntesis de NGF (Nerve Growth Factor), la
+            proteína que promueve el crecimiento y la reparación de las neuronas.</p>
+        </div>
+
+        <!-- Mecanismo 2 -->
+        <div class="ingredient-card bg-white/6 border border-white/10 rounded-2xl p-6">
+          <div class="text-3xl mb-4">🌊</div>
+          <h4 class="font-display text-white font-bold mb-2">Modulación Nerviosa</h4>
+          <p class="text-white/55 text-sm leading-relaxed">Actúa sobre las vías GABA, generando una calma genuina
+            sin el efecto sedante de los ansiolíticos convencionales.</p>
+        </div>
+
+        <!-- Mecanismo 3 -->
+        <div class="ingredient-card bg-white/6 border border-white/10 rounded-2xl p-6">
+          <div class="text-3xl mb-4">🦠</div>
+          <h4 class="font-display text-white font-bold mb-2">Eje Intestino-Cerebro</h4>
+          <p class="text-white/55 text-sm leading-relaxed">Mejora la microbiota intestinal, reduciendo la
+            inflamación de bajo grado vinculada a la ansiedad y al ánimo bajo.</p>
+        </div>
+      </div>
+
+      <!-- Beneficios expandidos -->
+      <div class="grid sm:grid-cols-2 gap-5">
+        <div class="bg-white/5 border border-white/8 rounded-2xl p-5">
+          <h4 class="font-display text-white font-semibold mb-3 flex items-center gap-2">
+            <span class="text-violet">🧠</span> Para la mente
+          </h4>
+          <ul class="space-y-2">
+            <li class="flex gap-2 text-sm text-white/70"><span class="text-violet">→</span> Reduce síntomas de
+              ansiedad y ánimo bajo leve</li>
+            <li class="flex gap-2 text-sm text-white/70"><span class="text-violet">→</span> Mejora memoria y
+              velocidad de concentración</li>
+            <li class="flex gap-2 text-sm text-white/70"><span class="text-violet">→</span> Disipa la neblina
+              mental (brain fog)</li>
+            <li class="flex gap-2 text-sm text-white/70"><span class="text-violet">→</span> Protección
+              antioxidante de las neuronas</li>
+          </ul>
+        </div>
+        <div class="bg-white/5 border border-white/8 rounded-2xl p-5">
+          <h4 class="font-display text-white font-semibold mb-3 flex items-center gap-2">
+            <span class="text-lilac">🌙</span> Para tu bienestar diario
+          </h4>
+          <ul class="space-y-2">
+            <li class="flex gap-2 text-sm text-white/70"><span class="text-lilac">→</span> Sueño más profundo, sin
+              somnolencia diurna</li>
+            <li class="flex gap-2 text-sm text-white/70"><span class="text-lilac">→</span> Menor reactividad ante
+              el estrés cotidiano</li>
+            <li class="flex gap-2 text-sm text-white/70"><span class="text-lilac">→</span> Mejor digestión y salud
+              intestinal</li>
+            <li class="flex gap-2 text-sm text-white/70"><span class="text-lilac">→</span> Energía estable, sin
+              picos ni caídas</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+     [S6] TABS — INFO INTERACTIVA (Alpine.js)
+══════════════════════════════════════════════ -->
+  <section class="py-16 sm:py-20 bg-mist" x-data="{ tab: 'ciencia' }">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-10">
+        <div class="divider-violet"></div>
+        <h2 class="font-display text-3xl sm:text-4xl text-ink mb-3">Todo lo que necesitas saber</h2>
+        <p class="text-ink/50 text-sm">Ciencia, protocolo de uso y cómo maximizar tu calma natural.</p>
+      </div>
+
+      <!-- Tab buttons -->
+      <div class="flex overflow-x-auto no-scroll border-b border-violet-100 mb-8 gap-0">
+        <button @click="tab='ciencia'"
+          :class="tab==='ciencia' ? 'border-b-2 border-violet text-violet font-semibold' : 'text-zinc-500 font-medium hover:text-ink'"
+          class="whitespace-nowrap px-5 py-3 text-sm transition-all">
+          🔬 Ciencia
+        </button>
+        <button @click="tab='uso'"
+          :class="tab==='uso' ? 'border-b-2 border-violet text-violet font-semibold' : 'text-zinc-500 font-medium hover:text-ink'"
+          class="whitespace-nowrap px-5 py-3 text-sm transition-all">
+          📋 Modo de Uso
+        </button>
+        <button @click="tab='estilo'"
+          :class="tab==='estilo' ? 'border-b-2 border-violet text-violet font-semibold' : 'text-zinc-500 font-medium hover:text-ink'"
+          class="whitespace-nowrap px-5 py-3 text-sm transition-all">
+          🥗 Estilo de Vida
+        </button>
+        <button @click="tab='estudios'"
+          :class="tab==='estudios' ? 'border-b-2 border-violet text-violet font-semibold' : 'text-zinc-500 font-medium hover:text-ink'"
+          class="whitespace-nowrap px-5 py-3 text-sm transition-all">
+          📄 Estudios
+        </button>
+      </div>
+
+      <!-- Tab panels -->
+      <div>
+
+        <!-- Ciencia -->
+        <div x-show="tab==='ciencia'" x-transition:enter="transition duration-300 ease-out"
+          x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0">
+          <div class="grid sm:grid-cols-3 gap-5">
+            <div class="bg-white rounded-2xl p-5 border border-violet-100 shadow-card">
+              <div class="w-10 h-10 rounded-xl bg-violet-50 flex items-center justify-center mb-3 text-xl">🧠</div>
+              <h4 class="font-semibold text-ink mb-2">NGF y Neurogénesis</h4>
+              <p class="text-zinc-500 text-sm leading-relaxed">Compuestos activos como las hericenonas y erinacinas
+                estimulan la producción de NGF, apoyando la reparación y comunicación neuronal.</p>
+            </div>
+            <div class="bg-white rounded-2xl p-5 border border-violet-100 shadow-card">
+              <div class="w-10 h-10 rounded-xl bg-violet-50 flex items-center justify-center mb-3 text-xl">🌊</div>
+              <h4 class="font-semibold text-ink mb-2">Vías GABA</h4>
+              <p class="text-zinc-500 text-sm leading-relaxed">Modula receptores relacionados con la relajación del
+                sistema nervioso, generando calma sin el efecto sedante de un ansiolítico convencional.</p>
+            </div>
+            <div class="bg-white rounded-2xl p-5 border border-violet-100 shadow-card">
+              <div class="w-10 h-10 rounded-xl bg-violet-50 flex items-center justify-center mb-3 text-xl">🦠</div>
+              <h4 class="font-semibold text-ink mb-2">Eje Intestino-Cerebro</h4>
+              <p class="text-zinc-500 text-sm leading-relaxed">Favorece una microbiota intestinal balanceada,
+                reduciendo la inflamación de bajo grado asociada con la ansiedad y el ánimo bajo.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modo de Uso -->
+        <div x-show="tab==='uso'" x-transition:enter="transition duration-300 ease-out"
+          x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0">
+          <div class="bg-white rounded-2xl border border-violet-100 shadow-card overflow-hidden">
+            <div class="p-6 border-b border-violet-50">
+              <h4 class="font-display text-xl text-ink mb-1">Protocolo Diario Recomendado</h4>
+              <p class="text-zinc-500 text-sm">Resultados visibles en 2–4 semanas de uso constante.</p>
+            </div>
+            <div class="divide-y divide-violet-50">
+              <div class="flex gap-4 p-5">
+                <div class="w-8 h-8 rounded-full bg-violet-100 flex items-center justify-center text-sm flex-shrink-0">
+                  🌙</div>
+                <div>
+                  <p class="font-semibold text-ink text-sm">Noche, con la cena</p>
+                  <p class="text-zinc-500 text-sm mt-0.5">2 cápsulas junto a la cena. Tomarla en la noche ayuda a
+                    "cerrar" el día y preparar un sueño más profundo.</p>
+                </div>
+              </div>
+              <div class="flex gap-4 p-5">
+                <div class="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center text-sm flex-shrink-0">
+                  ☀️</div>
+                <div>
+                  <p class="font-semibold text-ink text-sm">Días de alta exigencia (opcional)</p>
+                  <p class="text-zinc-500 text-sm mt-0.5">1 cápsula adicional en la mañana en días de mucha carga
+                    mental o estrés, para acompañar todo el día.</p>
+                </div>
+              </div>
+              <div class="flex gap-4 p-5">
+                <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center text-sm flex-shrink-0">💧
+                </div>
+                <div>
+                  <p class="font-semibold text-ink text-sm">Constancia ante todo</p>
+                  <p class="text-zinc-500 text-sm mt-0.5">La clave es la regularidad — los adaptógenos construyen su
+                    efecto con el tiempo, no de un día para otro.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Estilo de Vida -->
+        <div x-show="tab==='estilo'" x-transition:enter="transition duration-300 ease-out"
+          x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0">
+          <div class="grid sm:grid-cols-2 gap-5">
+            <div class="bg-white rounded-2xl p-5 border border-violet-100 shadow-card">
+              <h4 class="font-semibold text-ink mb-3 flex items-center gap-2">🥗 Alimentación que potencia la calma
+              </h4>
+              <ul class="space-y-2 text-sm text-zinc-600">
+                <li class="flex gap-2"><span class="text-violet">•</span> Omega-3 (salmón, chía, nueces) — reduce
+                  inflamación y apoya la función cerebral</li>
+                <li class="flex gap-2"><span class="text-violet">•</span> Fibra prebiótica (avena, plátano verde) —
+                  alimenta la microbiota del eje intestino-cerebro</li>
+                <li class="flex gap-2"><span class="text-violet">•</span> Magnesio (espinaca, almendras) — cofactor
+                  clave para la relajación del sistema nervioso</li>
+                <li class="flex gap-2"><span class="text-violet">•</span> Reducir cafeína después del mediodía —
+                  evita sobreestimular un sistema ya agotado</li>
+                <li class="flex gap-2"><span class="text-violet">•</span> Probióticos naturales (kéfir, kimchi) —
+                  refuerzan la conexión intestino-cerebro</li>
+              </ul>
+            </div>
+            <div class="bg-white rounded-2xl p-5 border border-violet-100 shadow-card">
+              <h4 class="font-semibold text-ink mb-3 flex items-center gap-2">🌙 Hábitos que multiplican la calma
+              </h4>
+              <ul class="space-y-2 text-sm text-zinc-600">
+                <li class="flex gap-2"><span class="text-violet-700">•</span> Desconexión digital 30 min antes de
+                  dormir — sin esto, ningún suplemento compensa</li>
+                <li class="flex gap-2"><span class="text-violet-700">•</span> Respiración 4-7-8 antes de dormir —
+                  activa el sistema nervioso parasimpático</li>
+                <li class="flex gap-2"><span class="text-violet-700">•</span> Journaling nocturno — vacía la mente
+                  de pendientes antes de dormir</li>
+                <li class="flex gap-2"><span class="text-violet-700">•</span> Luz natural en la mañana — regula el
+                  ritmo circadiano y mejora el sueño nocturno</li>
+                <li class="flex gap-2"><span class="text-violet-700">•</span> Consistencia 30 días — los
+                  adaptógenos mejoran con el tiempo</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Estudios -->
+        <div x-show="tab==='estudios'" x-transition:enter="transition duration-300 ease-out"
+          x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0">
+          <div class="space-y-4">
+            <div class="bg-white rounded-2xl p-5 border-l-4 border-violet border border-violet-100 shadow-card">
+              <p class="text-ink/75 text-sm leading-relaxed italic mb-2">
+                Estudios preliminares con Hericium erinaceus muestran estimulación de la síntesis de NGF en modelos
+                animales, lo que sugiere un rol de apoyo en la regeneración neuronal.
+              </p>
+              <p class="text-zinc-400 text-xs">Biomedical Research — referencia general sobre el compuesto</p>
+            </div>
+            <div class="bg-white rounded-2xl p-5 border-l-4 border-violet border border-violet-100 shadow-card">
+              <p class="text-ink/75 text-sm leading-relaxed italic mb-2">
+                En un ensayo controlado, un grupo que consumió Hericium erinaceus por varias semanas reportó menor
+                ansiedad e irritabilidad frente al grupo placebo.
+              </p>
+              <p class="text-zinc-400 text-xs">Phytotherapy Research — referencia general sobre el compuesto</p>
+            </div>
+            <div class="bg-white rounded-2xl p-5 border-l-4 border-lilac-dark border border-violet-100 shadow-card">
+              <p class="text-ink/75 text-sm leading-relaxed italic mb-2">
+                Investigaciones in vitro muestran que compuestos del Hericium erinaceus modulan vías GABAérgicas,
+                ofreciendo una vía mecanística para su efecto calmante sin sedación.
+              </p>
+              <p class="text-zinc-400 text-xs">Journal of Ethnopharmacology — referencia general sobre el compuesto
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+     [S7] TIMELINE — RESULTADOS ESPERADOS
+══════════════════════════════════════════════ -->
+  <section class="py-16 sm:py-20 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-12">
+        <div class="divider-violet"></div>
+        <h2 class="font-display text-3xl sm:text-4xl text-ink mb-3">¿Qué esperar y cuándo?</h2>
+        <p class="text-ink/50 text-sm">Los adaptógenos actúan de forma progresiva. La consistencia es tu mayor
+          ventaja.</p>
+      </div>
+
+      <div class="relative">
+        <div
+          class="absolute left-5 sm:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-violet/40 via-lilac/40 to-violet/40 -translate-x-1/2 hidden sm:block">
+        </div>
+
+        <div class="space-y-8">
+          <!-- Semana 1 -->
+          <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-8">
+            <div class="sm:w-1/2 sm:text-right sm:pr-10">
+              <div
+                class="inline-block font-display text-sm text-violet border border-violet/35 rounded-full px-3 py-1 mb-2">
+                Días 3–7</div>
+              <h4 class="font-semibold text-ink">Primera señal</h4>
+              <p class="text-zinc-500 text-sm mt-1">Muchos reportan que el sueño se vuelve un poco más profundo y
+                que cuesta menos "desconectar" la cabeza al final del día.</p>
+            </div>
+            <div
+              class="hidden sm:flex w-10 h-10 rounded-full gradient-cta flex-shrink-0 items-center justify-center text-white font-bold z-10">
+              1</div>
+            <div class="sm:w-1/2 sm:pl-10 hidden sm:block"></div>
+          </div>
+
+          <!-- Semana 2-3 -->
+          <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-8">
+            <div class="sm:w-1/2 sm:pr-10 hidden sm:block"></div>
+            <div
+              class="hidden sm:flex w-10 h-10 rounded-full gradient-lilac flex-shrink-0 items-center justify-center text-ink font-bold z-10">
+              2</div>
+            <div class="sm:w-1/2 sm:pl-10">
+              <div
+                class="inline-block font-display text-sm text-violet border border-violet/35 rounded-full px-3 py-1 mb-2">
+                Semana 2–3</div>
+              <h4 class="font-semibold text-ink">Claridad notable</h4>
+              <p class="text-zinc-500 text-sm mt-1">La neblina mental disminuye, los bloques de concentración se
+                alargan, y la irritabilidad ante el estrés cotidiano baja.</p>
+            </div>
+          </div>
+
+          <!-- Semana 4-6 -->
+          <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-8">
+            <div class="sm:w-1/2 sm:text-right sm:pr-10">
+              <div
+                class="inline-block font-display text-sm text-violet border border-violet/35 rounded-full px-3 py-1 mb-2">
+                Semana 4–6</div>
+              <h4 class="font-semibold text-ink">Modo calma establecido</h4>
+              <p class="text-zinc-500 text-sm mt-1">Ansiedad basal notablemente menor. Mejor digestión. Sensación
+                general de tener "más espacio mental" para pensar con calma.</p>
+            </div>
+            <div
+              class="hidden sm:flex w-10 h-10 rounded-full gradient-cta flex-shrink-0 items-center justify-center text-white font-bold z-10">
+              3</div>
+            <div class="sm:w-1/2 sm:pl-10 hidden sm:block"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+     [S8] TESTIMONIOS
+══════════════════════════════════════════════ -->
+  <section class="py-16 sm:py-20 bg-ink">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-12">
+        <div class="divider-violet"></div>
+        <h2 class="font-display text-3xl sm:text-4xl text-white mb-3">Ellos ya apagaron <span class="text-violet">su
+            ruido mental</span></h2>
+        <p class="text-white/45 text-sm">Testimonios reales de Colombia.</p>
+      </div>
+
+      <div class="grid sm:grid-cols-3 gap-5">
+        <div class="review-card">
+          <div class="flex text-violet text-sm mb-3">★★★★★</div>
+          <p class="text-zinc-600 text-sm leading-relaxed mb-4">"Llegaba a casa y mi cabeza seguía en modo reunión
+            hasta la medianoche. Con Melena de León por fin logro desconectar sin sentirme drogado. Duermo mejor y
+            rindo mejor al día siguiente."</p>
+          <div class="flex items-center gap-3">
+            <div
+              class="w-8 h-8 rounded-full gradient-cta flex items-center justify-center text-white text-xs font-bold">
+              LM</div>
+            <div>
+              <p class="font-semibold text-ink text-xs">Laura M.</p>
+              <p class="text-zinc-400 text-xs">Bogotá · Gerente de Proyecto</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="flex text-violet text-sm mb-3">★★★★★</div>
+          <p class="text-zinc-600 text-sm leading-relaxed mb-4">"La recomiendo a varios pacientes con ansiedad leve
+            como complemento. La diferencia frente a otros suplementos es que no seda — la persona sigue funcional,
+            solo más calmada."</p>
+          <div class="flex items-center gap-3">
+            <div
+              class="w-8 h-8 rounded-full bg-violet-500 flex items-center justify-center text-white text-xs font-bold">
+              SP</div>
+            <div>
+              <p class="font-semibold text-ink text-xs">Sandra P.</p>
+              <p class="text-zinc-400 text-xs">Medellín · Psicóloga</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="flex text-violet text-sm mb-3">★★★★★</div>
+          <p class="text-zinc-600 text-sm leading-relaxed mb-4">"El brain fog me tenía bloqueado creativamente. A
+            las 3 semanas empecé a notar más claridad para enfocarme en proyectos largos. Bonus: dormir mejor cambió
+            todo."</p>
+          <div class="flex items-center gap-3">
+            <div
+              class="w-8 h-8 rounded-full bg-purple-700 flex items-center justify-center text-white text-xs font-bold">
+              DC</div>
+            <div>
+              <p class="font-semibold text-ink text-xs">Daniel C.</p>
+              <p class="text-zinc-400 text-xs">Cali · Diseñador Freelance</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-8 text-center">
+        <div class="inline-flex items-center gap-3 bg-white/8 border border-white/12 rounded-full px-6 py-2.5">
+          <div class="flex text-violet">★★★★★</div>
+          <span class="text-white text-sm"><strong>4,9 / 5</strong> · 3.214 calificaciones verificadas</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+     [S9] CTA FINAL + DELIVERY TIMELINE
+══════════════════════════════════════════════ -->
+  <section class="py-16 sm:py-20 bg-mist">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 text-center">
+      <div class="divider-violet"></div>
+      <h2 class="font-display text-3xl sm:text-4xl text-ink mb-3">Apaga el <span class="text-violet">ruido</span>
+        hoy</h2>
+      <p class="text-ink/50 text-base mb-8 max-w-md mx-auto">No esperes a que otra noche termine igual de agitada.
+        La calma real empieza en tu próxima cápsula.</p>
+
+      <div class="bg-white rounded-3xl border border-violet-100 shadow-card p-6 sm:p-8 text-left">
+
+        <!-- Product summary -->
+        <div class="flex items-center gap-4 mb-5 pb-5 border-b border-violet-50">
+          <div class="text-4xl">🌙</div>
+          <div>
+            <h3 class="font-display text-ink text-lg">Melena de León — Calma para tu Mente</h3>
+            <p class="text-zinc-500 text-sm">60 cápsulas · 30 días de calma</p>
+          </div>
+          <div class="ml-auto text-right">
+            <p class="font-display text-2xl text-ink font-bold">$45.000</p>
+            <p class="text-zinc-400 text-xs line-through">$65.000</p>
+          </div>
+        </div>
+
+        <!-- Código activo -->
+        <div class="flex items-center gap-3 bg-violet/6 border border-violet/20 rounded-xl px-4 py-3 mb-5">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--violet)" stroke-width="2">
+            <path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z" />
+            <line x1="7" y1="7" x2="7.01" y2="7" />
+          </svg>
+          <span class="font-display text-violet text-sm font-bold tracking-widest">MENTEZEN</span>
+          <span class="ml-auto text-xs text-violet/65 font-medium">✓ 15% adicional aplicado</span>
+        </div>
+
+        <!-- CTA -->
+        <a href="https://wa.me/573000000000?text=Hola,%20quiero%20Melena%20de%20Le%C3%B3n%20con%20c%C3%B3digo%20MENTEZEN"
+          target="_blank"
+          class="block w-full gradient-cta text-white font-bold text-lg py-4 rounded-xl text-center shadow-lg hover:opacity-92 transition-opacity mb-3">
+          🌙 PEDIR AHORA — Envío GRATIS
+        </a>
+
+        <p class="text-center text-zinc-400 text-xs mb-5">
+          WhatsApp directo · Pago Contraentrega · Sin tarjeta requerida
+        </p>
+
+        <!-- Delivery timeline -->
+        <div class="bg-violet-50/60 rounded-xl p-4">
+          <p class="text-xs text-center text-zinc-500 mb-3">📦 Pedido hoy → Entrega estimada</p>
+          <div class="flex justify-between relative">
+            <div class="absolute top-3 left-6 right-6 h-0.5 bg-violet/35"></div>
+            <div class="flex flex-col items-center z-10">
+              <div class="w-6 h-6 rounded-full gradient-cta flex items-center justify-center mb-1">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3">
+                  <path d="M20 6L9 17l-5-5" />
+                </svg>
+              </div>
+              <span class="text-[10px] font-bold text-ink">Jun 26</span>
+              <span class="text-[10px] text-zinc-400">Hoy</span>
+            </div>
+            <div class="flex flex-col items-center z-10">
+              <div class="w-6 h-6 rounded-full gradient-cta flex items-center justify-center mb-1">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3">
+                  <rect x="1" y="3" width="15" height="13" />
+                  <polygon points="16 8 20 8 23 11 23 16 16 16 16 8" />
+                </svg>
+              </div>
+              <span class="text-[10px] font-bold text-ink">Jun 27</span>
+              <span class="text-[10px] text-zinc-400">Despacho</span>
+            </div>
+            <div class="flex flex-col items-center z-10">
+              <div class="w-6 h-6 rounded-full border-2 border-violet bg-white flex items-center justify-center mb-1">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--violet)" stroke-width="3">
+                  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
+                </svg>
+              </div>
+              <span class="text-[10px] font-bold text-ink">Jun 29–Jul 1</span>
+              <span class="text-[10px] text-zinc-400">Entregado</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Trust row -->
+        <div class="flex justify-center gap-5 mt-5 text-xs text-zinc-400">
+          <div class="flex items-center gap-1.5">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+            100% seguro
+          </div>
+          <div class="flex items-center gap-1.5">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+            </svg>
+            Toda Colombia
+          </div>
+          <div class="flex items-center gap-1.5">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10" />
+              <path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3" />
+              <line x1="12" y1="17" x2="12.01" y2="17" />
+            </svg>
+            Soporte 7/7
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+     [S10] FAQ ACCORDION
+══════════════════════════════════════════════ -->
+  <section class="py-14 sm:py-18 bg-white">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-10">
+        <div class="divider-violet"></div>
+        <h2 class="font-display text-2xl sm:text-3xl text-ink">Preguntas frecuentes</h2>
+      </div>
+
+      <div class="space-y-0">
+        <details class="group border-b border-zinc-100 py-4">
+          <summary class="flex items-center justify-between text-sm font-semibold text-ink cursor-pointer">
+            ¿Me va a dar sueño o me va a "atontar"?
+            <svg class="icon-chevron w-5 h-5 text-zinc-400 flex-shrink-0 ml-4" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor" stroke-width="2">
+              <path d="M6 9l6 6 6-6" />
+            </svg>
+          </summary>
+          <div class="mt-3 text-sm text-zinc-600 leading-relaxed pr-8">
+            No es un sedante. Actúa regulando el sistema nervioso, no apagándolo. La mayoría de usuarios reporta
+            sentirse más calmados pero igual de funcionales y alertas — sin la pesadez típica de un calmante
+            convencional.
+          </div>
+        </details>
+
+        <details class="group border-b border-zinc-100 py-4">
+          <summary class="flex items-center justify-between text-sm font-semibold text-ink cursor-pointer">
+            ¿La tomo en la mañana o en la noche?
+            <svg class="icon-chevron w-5 h-5 text-zinc-400 flex-shrink-0 ml-4" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor" stroke-width="2">
+              <path d="M6 9l6 6 6-6" />
+            </svg>
+          </summary>
+          <div class="mt-3 text-sm text-zinc-600 leading-relaxed pr-8">
+            La recomendación base es en la noche, junto a la cena, para acompañar el cierre del día. En jornadas de
+            alta exigencia mental, una cápsula adicional en la mañana también funciona bien.
+          </div>
+        </details>
+
+        <details class="group border-b border-zinc-100 py-4">
+          <summary class="flex items-center justify-between text-sm font-semibold text-ink cursor-pointer">
+            ¿Puedo tomarla si ya uso medicamentos para ansiedad o depresión?
+            <svg class="icon-chevron w-5 h-5 text-zinc-400 flex-shrink-0 ml-4" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor" stroke-width="2">
+              <path d="M6 9l6 6 6-6" />
+            </svg>
+          </summary>
+          <div class="mt-3 text-sm text-zinc-600 leading-relaxed pr-8">
+            Si estás bajo tratamiento médico con ansiolíticos o antidepresivos, consulta con tu médico antes de
+            combinar cualquier suplemento. La Melena de León es de origen natural, pero toda interacción merece
+            supervisión profesional.
+          </div>
+        </details>
+
+        <details class="group border-b border-zinc-100 py-4">
+          <summary class="flex items-center justify-between text-sm font-semibold text-ink cursor-pointer">
+            ¿Cómo funciona el pago contraentrega?
+            <svg class="icon-chevron w-5 h-5 text-zinc-400 flex-shrink-0 ml-4" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor" stroke-width="2">
+              <path d="M6 9l6 6 6-6" />
+            </svg>
+          </summary>
+          <div class="mt-3 text-sm text-zinc-600 leading-relaxed pr-8">
+            Recibes el paquete primero, lo inspeccionas y pagas al mensajero al momento de la entrega. Sin tarjeta ni
+            transferencia anticipada. Disponible en más de 1.000 municipios de Colombia.
+          </div>
+        </details>
+
+        <details class="group py-4">
+          <summary class="flex items-center justify-between text-sm font-semibold text-ink cursor-pointer">
+            ¿El código MENTEZEN tiene fecha de vencimiento?
+            <svg class="icon-chevron w-5 h-5 text-zinc-400 flex-shrink-0 ml-4" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor" stroke-width="2">
+              <path d="M6 9l6 6 6-6" />
+            </svg>
+          </summary>
+          <div class="mt-3 text-sm text-zinc-600 leading-relaxed pr-8">
+            Sí — está activo mientras dure el stock de la promoción actual. Al agotarse, se retira sin aviso previo.
+            Si lo ves activo al momento de tu pedido, aplica sin restricción.
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+     [S11] FOOTER
+══════════════════════════════════════════════ -->
+  <footer class="bg-ink border-t border-white/10 py-10">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 text-center">
+      <span class="font-display text-white text-xl">Fungi<span class="text-violet">Lab</span></span>
+      <p class="text-white/30 text-xs mt-2 max-w-md mx-auto">
+        Suplementos de hongos funcionales. Estos productos no están destinados a diagnosticar, tratar, curar ni
+        prevenir ninguna enfermedad. Consulta con un profesional de salud.
+      </p>
+      <div class="flex justify-center gap-5 mt-5 text-xs text-white/25">
+        <a href="#" class="hover:text-white/55 transition-colors">Términos</a>
+        <a href="#" class="hover:text-white/55 transition-colors">Privacidad</a>
+        <a href="https://wa.me/573000000000" target="_blank" class="hover:text-white/55 transition-colors">Contacto</a>
+      </div>
+      <p class="text-white/15 text-xs mt-4">© 2026 FungiLab Colombia · Todos los derechos reservados</p>
+    </div>
+  </footer>
+
+  <!-- ══════════════════════════════════════════════
+     [FLOAT] STICKY CTA MOBILE
+══════════════════════════════════════════════ -->
+  <div id="sticky-cta"
+    class="fixed bottom-0 left-0 right-0 z-50 bg-ink/95 backdrop-blur border-t border-white/12 py-3 px-4">
+    <div class="max-w-sm mx-auto flex items-center gap-3">
+      <div class="flex-1 min-w-0">
+        <p class="text-white text-xs font-semibold truncate">Melena de León · $45.000 COP</p>
+        <p class="text-violet text-[10px]">Código: MENTEZEN</p>
+      </div>
+      <a href="https://wa.me/573000000000?text=Hola,%20quiero%20Melena%20de%20Le%C3%B3n%20con%20c%C3%B3digo%20MENTEZEN"
+        target="_blank" class="gradient-cta text-white text-xs font-bold px-5 py-2.5 rounded-xl whitespace-nowrap">
+        PEDIR AHORA
+      </a>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+     SCRIPTS
+══════════════════════════════════════════════ -->
+  <script>
+    lucide.createIcons();
+
+    // ── Galería de imágenes (fotos reales del producto) ──
+    const heroImages = [
+      "img/hero-bottle-purpura.jpg",
+      "img/detalle-etiqueta.jpg",
+      "img/detalle-capsulas.jpg",
+      "img/frasco-completo-crema.jpg"
+    ];
+
+    function setImg(idx, btn) {
+      document.getElementById('hero-img').src = heroImages[idx];
+      document.querySelectorAll('.thumb-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+
+    // ── FIRMA VISUAL: Calm Meter animado ──
+    // Anima de 86% (ruido mental sin suplemento) a 14% (con Melena de León) al cargar la página
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        const fill = document.getElementById('noise-fill');
+        const pct = document.getElementById('noise-pct');
+        if (!fill || !pct) return;
+
+        fill.classList.add('calmed');
+
+        // Animación del número contador (descendente)
+        let current = 86;
+        const target = 14;
+        const duration = 1600;
+        const step = (current - target) / (duration / 16);
+
+        const ticker = setInterval(() => {
+          current = Math.max(current - step, target);
+          pct.textContent = Math.round(current) + '%';
+          if (current <= target) clearInterval(ticker);
+        }, 16);
+      }, 400);
+    });
+
+    // ── Sticky CTA: aparece cuando el hero#comprar sale del viewport ──
+    const stickyCTA = document.getElementById('sticky-cta');
+    const observer = new IntersectionObserver(([entry]) => {
+      stickyCTA.classList.toggle('visible', !entry.isIntersecting);
+    }, { threshold: 0.1 });
+    observer.observe(document.getElementById('comprar'));
+  </script>
+
+</body>
+
+</html>
