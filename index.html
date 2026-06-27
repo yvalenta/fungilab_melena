@@ -1113,7 +1113,7 @@
                   <path d="M20 6L9 17l-5-5" />
                 </svg>
               </div>
-              <span class="text-[10px] font-bold text-ink">Jun 26</span>
+              <span class="text-[10px] font-bold text-ink" id="date-hoy">Jun 26</span>
               <span class="text-[10px] text-zinc-400">Hoy</span>
             </div>
             <div class="flex flex-col items-center z-10">
@@ -1123,7 +1123,7 @@
                   <polygon points="16 8 20 8 23 11 23 16 16 16 16 8" />
                 </svg>
               </div>
-              <span class="text-[10px] font-bold text-ink">Jun 27</span>
+              <span class="text-[10px] font-bold text-ink" id="date-despacho">Jun 27</span>
               <span class="text-[10px] text-zinc-400">Despacho</span>
             </div>
             <div class="flex flex-col items-center z-10">
@@ -1132,7 +1132,7 @@
                   <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
                 </svg>
               </div>
-              <span class="text-[10px] font-bold text-ink">Jun 29–Jul 1</span>
+              <span class="text-[10px] font-bold text-ink" id="date-entrega">Jun 29–Jul 1</span>
               <span class="text-[10px] text-zinc-400">Entregado</span>
             </div>
           </div>
@@ -1266,7 +1266,7 @@
         <a href="#" class="hover:text-white/55 transition-colors">Privacidad</a>
         <a href="https://wa.me/573244400734" target="_blank" class="hover:text-white/55 transition-colors">Contacto</a>
       </div>
-      <p class="text-white/15 text-xs mt-4">© 2026 FungiLab Colombia · Todos los derechos reservados</p>
+      <p class="text-white/15 text-xs mt-4">© <span id="footer-year">2026</span> FungiLab Colombia · Todos los derechos reservados</p>
     </div>
   </footer>
 
@@ -1337,6 +1337,24 @@
       stickyCTA.classList.toggle('visible', !entry.isIntersecting);
     }, { threshold: 0.1 });
     observer.observe(document.getElementById('comprar'));
+
+    // ── Fechas dinámicas ──
+    const meses = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
+    function fmtFecha(d) { return meses[d.getMonth()] + ' ' + d.getDate(); }
+    const hoy = new Date();
+    const manana = new Date(hoy); manana.setDate(hoy.getDate() + 1);
+    const d3 = new Date(hoy); d3.setDate(hoy.getDate() + 3);
+    const d5 = new Date(hoy); d5.setDate(hoy.getDate() + 5);
+    document.getElementById('date-hoy').textContent = fmtFecha(hoy);
+    document.getElementById('date-despacho').textContent = fmtFecha(manana);
+    // Rango de entrega: si mismo mes "Jun 29–Jul 1", si cruza mes "Jun 29–Jul 1"
+    const rangoInicio = fmtFecha(d3);
+    const rangoFin = d3.getMonth() === d5.getMonth()
+      ? String(d5.getDate())
+      : fmtFecha(d5);
+    document.getElementById('date-entrega').textContent = rangoInicio + '–' + rangoFin;
+    // Año dinámico en footer
+    document.getElementById('footer-year').textContent = hoy.getFullYear();
   </script>
 
 </body>
